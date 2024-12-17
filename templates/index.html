@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Blog</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Welcome to the Blog</h1>
+            <button class="logout-button">Logout</button>
+        </div>
+    </header>
+    <main>
+
+        <section class="welcome-section">
+            <h2 class="my-blog">Welcome to <span class="my-blog">Amr Elnemr</span> Blogs</h2>
+
+        </section>
+
+        <section class="blogs">
+           {% for post in posts %}
+           <a href="/post/{{post.id}}" class="links">
+            <article class="blog">
+                <h2 class="blog-title"> {{post.title}} </h2>
+                <p class="blog-content">{{post.description|truncatewords:20}}</p>
+                <span class="blog-date">Posted on: {{post.created_at}}</span>
+            </article>
+           </a>
+        {% endfor %}
+
+        </section>
+    </main>
+</body>
+</html>
